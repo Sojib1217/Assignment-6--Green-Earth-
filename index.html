@@ -74,29 +74,31 @@
             <div class="w-1/6 bg-white p-4 rounded-md">
 
                 <h1 class="text-xl font-bold">Your cart</h1>
-                <div id="curt-container">
-                    <div class="flex justify-between items-center bg-[#F0FDF4] p-2 rounded-md space-y-2">
-                        <div>
-                            <h1 class="font-bold">${array.name}</h1>
-                            <p>${array.price} x 1</p>
-                        </div>
-                        <button class="btn bg-[#F0FDF4] border-none"><i class="fa-solid fa-xmark"></i></button>
-
-                    </div>
+                <div id="cart-container" class="space-y-2">
+                
 
 
                 </div>
 
                 <!-- total price div -->
-                <div class="flex justify-between  mt-2">
+                <div id="calculator" class="flex justify-between  mt-2 hidden">
                     <h1>Total:</h1>
-                    <p>৳1000</p>
+                    <p>৳<span id="total-price">0</span></p>
 
                 </div>
 
             </div>
 
         </section>
+        <!-- modal style -->
+         <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="detail_modal.showModal()" >open modal</button> -->
+<dialog id="detail_modal" class="modal modal-bottom sm:modal-middle ">
+  <div id="modal-container">
+    
+    
+  </div>
+</dialog>
 
         <!--  About Campaign-->
         <section class="mt-14 mx-[80px]">
