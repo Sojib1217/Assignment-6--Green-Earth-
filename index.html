@@ -49,14 +49,16 @@
             <div><img src="./assets/hero-leaf2.png" alt=""></div>
         </div>
     </header>
-    <main class="mt-24 mx-[80px]">
+    <main class="mt-24 ">
         <h1 class="text-center font-bold text-2xl">Choose Your Trees</h1>
-        <section class="flex justify-between gap-7 mt-10">
+        <section class="flex justify-between gap-7 mt-10 mx-[80px]">
             <!-- categoris -->
             <div class="w-1/6">
                 <h1 class="text-lg font-bold">Categories</h1>
                 <div id="category-container" class="mt-4 space-y-2">
-                    <button onclick="allPlants()" id="all-trees" class="hover:bg-[#15803D] w-full text-left p-2 rounded-md cursor-pointer hover:text-white">All Trees</button>
+                    <button onclick="allPlants()" id="all-trees"
+                        class="hover:bg-[#15803D] w-full text-left p-2 rounded-md cursor-pointer hover:text-white">All
+                        Trees</button>
 
 
                 </div>
@@ -64,19 +66,115 @@
             <!-- card-div -->
             <div class="w-4/6">
                 <div id="all-plant-container" class="grid grid-cols-3 gap-4">
-                    
+
 
                 </div>
             </div>
             <!-- cart-div -->
             <div class="w-1/6 bg-white p-4 rounded-md">
-            
+
                 <h1 class="text-xl font-bold">Your cart</h1>
+                <div id="curt-container">
+                    <div class="flex justify-between items-center bg-[#F0FDF4] p-2 rounded-md space-y-2">
+                        <div>
+                            <h1 class="font-bold">${array.name}</h1>
+                            <p>${array.price} x 1</p>
+                        </div>
+                        <button class="btn bg-[#F0FDF4] border-none"><i class="fa-solid fa-xmark"></i></button>
+
+                    </div>
+
+
+                </div>
+
+                <!-- total price div -->
+                <div class="flex justify-between  mt-2">
+                    <h1>Total:</h1>
+                    <p>৳1000</p>
+
+                </div>
+
             </div>
 
         </section>
 
+        <!--  About Campaign-->
+        <section class="mt-14 mx-[80px]">
+            <div class="w-4/6 mx-auto p-4">
+                <h1 class="text-3xl text-center font-bold">About the Campaign</h1>
+                <div class="flex justify-center items-center gap-8 mt-8">
+                    <img src="./assets/about.png" alt="">
+                    <div>
+                        <p class="text-sm text-justify">Green Earth is a global tree plantation initiative dedicated to
+                            fighting climate change. Since our start, we’ve planted over 500,000 trees worldwide. By
+                            joining our campaign, you help restore forests, create habitats for wildlife, and combat
+                            global warming.</p>
+                        <div class="pl-6 mt-4 text-xs">
+                            <li>Restoration of natural habitats</li>
+                            <li>Improvement of air quality</li>
+                            <li>Support for local communities</li>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- our-impact-section -->
+        <section class="mt-10 bg-[#CFF0DC] ">
+            <h1 class="text-3xl font-bold text-center pt-20 ">Our Impact</h1>
+            <div class="pt-8 flex justify-between mx-20 gap-8 pb-20">
+                <div class="card bg-white py-8 w-full text-center">
+                    <h1 class="text-3xl text-[#15803D]">500K+</h1>
+                    <p class="text-sm mt-4">Trees Planted</p>
+                </div>
+                <div class="card bg-white py-8 w-full text-center">
+                    <h1 class="text-3xl text-[#15803D]">120+</h1>
+                    <p class="text-sm mt-4">Communities Involved</p>
+                </div>
+                <div class="card bg-white py-8 w-full text-center">
+                    <h1 class="text-3xl text-[#15803D]">30+</h1>
+                    <p class="text-sm mt-4">Countries Reached</p>
+                </div>
+            </div>
+        </section>
+        <!-- form-section -->
+        <section class="bg-[#166534] max-w-full">
+            <h1 class="text-3xl pt-20 text-center text-white">Plant a Tree Today</h1>
+            <div class="mt-10 flex flex-row items-center justify-center">
+                <form class="w-[450px] pb-20">
+                    <fieldset class="fieldset bg-[#15803D] rounded-md p-4">
+
+                        <input class="w-full bg-white p-3 rounded-md border-none" type="email" class="input"
+                            placeholder="Your Name" />
+
+                        <input class="w-full bg-white p-3 rounded-md border-none mt-2" type="password" class="input"
+                            placeholder="Your Email Address" />
+                        <fieldset class="fieldset">
+
+                            <select class="select w-full mt-2 rounded-md">
+                                <option disabled selected>Number of Trees</option>
+                                <option>1 Tree - 5$</option>
+                                <option>5 Trees - 25$</option>
+                                <option>10 Trees - 50$</option>
+                            </select>
+                        </fieldset>
+
+                        <button class="btn bg-[#FACC15] p-1 mt-4 rounded-3xl text-[#15803D] border-none">Donate
+                            Now</button>
+                    </fieldset>
+
+                </form>
+            </div>
+        </section>
+
+
+
     </main>
+    <footer class="bg-[#14532D]">
+        <p class="text-white p-6 text-center">© 2025 Green Earth. All Rights Reserved.</p>
+    </footer>
 
 
 

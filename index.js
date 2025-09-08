@@ -28,7 +28,7 @@ const displayCategoryFruit = (items) => {
     const fruitContainer = document.getElementById("all-plant-container")
     fruitContainer.innerHTML = "";
     items.forEach(item => {
-        console.log(item)
+        
         const fruitCard = document.createElement("div")
         fruitCard.innerHTML = `<div class="bg-white p-4 space-y-2 rounded-md">
                         <figure class="">
@@ -63,6 +63,11 @@ const displayCategory = (category) => {
 
 loadCategoris()
 
+
+// add to curt btn
+    
+
+
 // all plant btn
 const allPlants = () => {
     fetch(`https://openapi.programming-hero.com/api/plants`)
@@ -78,6 +83,7 @@ const displayAllPlant = (plants) => {
     const allPlantContainer = document.getElementById('all-plant-container')
     allPlantContainer.innerHTML = '';
     plants.forEach(plant => {
+        // console.log(plant)
         const card = document.createElement('div')
         card.innerHTML = `<div class="bg-white p-4 space-y-2 rounded-md">
                         <figure class="">
@@ -89,10 +95,12 @@ const displayAllPlant = (plants) => {
                             <h1 class="bg-[#DCFCE7] text-[#15803D] py-1 px-2 rounded-3xl">${plant.category}</h1>
                             <p class="">$${plant.price}</p>
                         </div>
-                        <button class="btn active w-full rounded-3xl">Add to cart</button>
+                        <button class="btn active w-full rounded-3xl ">Add to cart</button>
                        
                     </div>`
         allPlantContainer.appendChild(card);
     })
 }
-allPlants()
+// allPlants()
+
+
