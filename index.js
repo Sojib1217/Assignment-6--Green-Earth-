@@ -17,9 +17,9 @@ const loadCategoryFruit = (id) => {
     fetch(url)
         .then(res => res.json())
         .then(fruits => displayCategoryFruit(fruits.plants))
-        removeClass()
-        const categoryBtn=document.getElementById(`category-btns-${id}`)
-        categoryBtn.classList.add('active')
+    removeClass()
+    const categoryBtn = document.getElementById(`category-btns-${id}`)
+    categoryBtn.classList.add('active')
     document.getElementById('all-trees').classList.remove('active')
 
 }
@@ -28,19 +28,19 @@ const displayCategoryFruit = (items) => {
     const fruitContainer = document.getElementById("all-plant-container")
     fruitContainer.innerHTML = "";
     items.forEach(item => {
-        
+
         const fruitCard = document.createElement("div")
         fruitCard.innerHTML = `<div class="bg-white p-4 space-y-2 rounded-md">
                         <figure class="">
                             <img class="h-[180px] w-full rounded-lg" src=${item.image} alt="">
                         </figure>
-                        <h1 class="font-bold">${item.name}</h1>
+                        <h1 onclick="showWordDetail(${item.id})" class="font-bold">${item.name}</h1>
                         <p class="text-sm">A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green</p>
                         <div class="flex justify-between items-center">
                             <h1 class="bg-[#DCFCE7] text-[#15803D] p-2 rounded-3xl">${item.category}</h1>
                             <p class="">$${item.price}</p>
                         </div>
-                        <button onclick="cartBtnCategories(${item.id})" class="btn active w-full rounded-3xl">Add to cart</button>
+                        <button onclick="cartBtn(${item.id})" class="btn active w-full rounded-3xl">Add to cart</button>
                        
                     </div>`
         fruitContainer.appendChild(fruitCard)
@@ -49,13 +49,16 @@ const displayCategoryFruit = (items) => {
 
 }
 // bill calculation
-const totalBill=()=>{
-    const totalPrice=document.getElementById('total-price').innerText;
-  const convertedPrice=parseInt(totalPrice)
-  const productPrice=document.getElementById('product-price').innerText
-  const convertedProductPrice =parseInt(productPrice)
-  const totalBill=convertedPrice + convertedProductPrice
-  document.getElementById('total-price').innerText=totalBill;
+const totalBill = () => {
+    document.getElementById('total-price').innerText=0
+    const totalPrice = document.getElementById('total-price').innerText;
+    const convertedPrice = parseInt(totalPrice)
+    const productPrice = document.getElementById('product-price').innerText
+    const convertedProductPrice = parseInt(productPrice)
+    const totalBill = convertedPrice + convertedProductPrice
+   const finalPrice= document.getElementById('total-price').innerText = totalBill;
+   
+    
 }
 
 const displayCategory = (category) => {
@@ -70,51 +73,78 @@ const displayCategory = (category) => {
 }
 
 loadCategoris()
-// add to cart
-const cartBtn=(id)=>{
-     const url=`https://openapi.programming-hero.com/api/plant/${id}`
-    fetch(url)
-    .then(res=>res.json())
-    .then(item=>displayCart(item.plants))
+
+// deletebtn
+// const deleteBtn=(id)=>{
+//     const url = `https://openapi.programming-hero.com/api/plant/${id}`
+//     fetch(url)
+//         .then(res => res.json())
+//         .then(trees=>itemDelete(trees.plants))
+// }
+// const itemDelete=(trees)=>{
+    
+
+// }
+
+const deleteBtn=()=>{
+    const cartContainer=document.getElementById('cart-container')
+    cartContainer.innerHTML=''
+    const productPrice=parseInt(document.getElementById('product-price'))
+    const totalPrice=parseInt(document.getElementById('total-price'))
+    const finalPrice=totalPrice-productPrice;
+    document.getElementById('total-price').innerText=finalPrice
+
+
+    document.getElementById('calculator').classList.remove('hidden')
+
+
 }
 
-const displayCart=(items)=>{
+// add to cart
+const cartBtn = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
+    fetch(url)
+        .then(res => res.json())
+        .then(item => displayCart(item.plants))
+}
+
+const displayCart = (items) => {
     alert('this item added to the cart')
-  const allValues=Object.values(items)
-  const cartContainer=document.getElementById('cart-container');
-  const div=document.createElement('div')
-  div.innerHTML=`<div class="flex justify-between items-center bg-[#F0FDF4] p-2 rounded-md space-y-2">
+    const allValues = Object.values(items)
+    const cartContainer = document.getElementById('cart-container');
+    const div = document.createElement('div')
+    div.innerHTML = `<div id="cart-info" class="flex justify-between items-center bg-[#F0FDF4] p-2 rounded-md space-y-2">
                         <div>
                             <h1 class="font-bold">${allValues[2]}</h1>
                             <p><span id="product-price">${allValues[5]}</span> x 1</p>
                         </div>
-                        <button class="btn bg-[#F0FDF4] border-none"><i class="fa-solid fa-xmark"></i></button>
+                        <button onclick="deleteBtn()" class="btn bg-[#F0FDF4] border-none"><i class="fa-solid fa-xmark"></i></button>
 
                     </div>`
-  cartContainer.appendChild(div)
-  document.getElementById('calculator').classList.remove('hidden')
-  totalBill()
-  
+    cartContainer.appendChild(div)
+    document.getElementById('calculator').classList.remove('hidden')
+    totalBill()
+
 }
 
 
 // word detals
-const showWordDetail=(id)=>{
-    const url=`https://openapi.programming-hero.com/api/plant/${id}`
+const showWordDetail = (id) => {
+    const url = `https://openapi.programming-hero.com/api/plant/${id}`
     fetch(url)
-    .then(res=>res.json())
-    .then(data=>displayWordDetail(data.plants))
+        .then(res => res.json())
+        .then(data => displayWordDetail(data.plants))
 }
-const displayWordDetail=(plants)=>{
-   
-    
-    const keys=Object.keys(plants)
-    const values=Object.values(plants)
+const displayWordDetail = (plants) => {
+
+
+    const keys = Object.keys(plants)
+    const values = Object.values(plants)
     // console.log(values[4])
-    const modalContainer=document.getElementById('modal-container')
-//  values.forEach(value=>{
+    const modalContainer = document.getElementById('modal-container')
+    //  values.forEach(value=>{
     // console.log(value.name)
-    modalContainer.innerHTML=`
+    modalContainer.innerHTML = `
     <div class="bg-white p-8 w-[450px] space-y-2">
         <h1 class="text-2xl font-bold">${values[2]}</h1>
         <img class="h-[300px] w-[400px] bg-cover rounded-lg" src=${values[1]} alt="">
@@ -129,12 +159,12 @@ const displayWordDetail=(plants)=>{
     </div>
     </div>
     `
-    
+
     document.getElementById('detail_modal').showModal()
-// })
+    // })
 
 }
-    
+
 
 
 // all plant btn
@@ -142,7 +172,7 @@ const allPlants = () => {
     fetch(`https://openapi.programming-hero.com/api/plants`)
         .then(res => res.json())
         .then(plant => displayAllPlant(plant.plants))
-        removeClass()
+    removeClass()
     document.getElementById('all-trees').classList.add('active')
 }
 
@@ -154,7 +184,7 @@ const displayAllPlant = (plants) => {
     plants.forEach(plant => {
         // console.log(plant)
         const card = document.createElement('div')
-        card.innerHTML = `<div class="bg-white p-4 space-y-2 rounded-md">
+        card.innerHTML = `<div class="bg-white p-4 space-y-2 rounded-md >
                         <figure class="">
                             <img class="h-[180px] w-full rounded-lg" src=${plant.image} alt="">
                         </figure>
@@ -173,30 +203,4 @@ const displayAllPlant = (plants) => {
 allPlants()
 
 
-const cartBtnCategories=(id)=>{
-    const url=`https://openapi.programming-hero.com/api/plant/${id}`
-    fetch(url)
-    .then(res=>res.json())
-    .then(data=>displayCartCategories(data.plants))
-}
 
-const displayCartCategories=(plants)=>{
-alert('this item added to the cart')
-  const allCartValues=Object.values(plants)
-  const cartContainer=document.getElementById('cart-container');
-  const div=document.createElement('div')
-  div.innerHTML=`<div class="flex justify-between items-center bg-[#F0FDF4] p-2 rounded-md space-y-2">
-                        <div>
-                            <h1 class="font-bold">${allCartValues[2]}</h1>
-                            <p><span id="product-price">${allCartValues[5]}</span> x 1</p>
-                        </div>
-                        <button class="btn bg-[#F0FDF4] border-none"><i class="fa-solid fa-xmark"></i></button>
-
-                    </div>`
-  cartContainer.appendChild(div)
-  document.getElementById('calculator').classList.remove('hidden')
-  totalBill()
-}
-
-
-// category by modal
