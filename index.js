@@ -13,6 +13,7 @@ const removeClass = () => {
 }
 
 const loadCategoryFruit = (id) => {
+    loadSpinner(true)
     const url = `https://openapi.programming-hero.com/api/category/${id}`
     fetch(url)
         .then(res => res.json())
@@ -25,6 +26,7 @@ const loadCategoryFruit = (id) => {
 }
 
 const displayCategoryFruit = (items) => {
+     
     const fruitContainer = document.getElementById("all-plant-container")
     fruitContainer.innerHTML = "";
     items.forEach(item => {
@@ -35,15 +37,16 @@ const displayCategoryFruit = (items) => {
                             <img class="h-[180px] w-full rounded-lg" src=${item.image} alt="">
                         </figure>
                         <h1 onclick="showWordDetail(${item.id})" class="font-bold">${item.name}</h1>
-                        <p class="text-sm">A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green</p>
+                        <p class="text-sm">${item.description}</p>
                         <div class="flex justify-between items-center">
                             <h1 class="bg-[#DCFCE7] text-[#15803D] p-2 rounded-3xl">${item.category}</h1>
-                            <p class="">$${item.price}</p>
+                            <p class="">৳${item.price}</p>
                         </div>
                         <button onclick="cartBtn(${item.id})" class="btn active w-full rounded-3xl">Add to cart</button>
                        
                     </div>`
         fruitContainer.appendChild(fruitCard)
+        loadSpinner(false)
 
     })
 
@@ -109,14 +112,14 @@ const cartBtn = (id) => {
 }
 
 const displayCart = (items) => {
-    alert('this item added to the cart')
+    alert('Successfully added  the tree to the cart')
     const allValues = Object.values(items)
     const cartContainer = document.getElementById('cart-container');
     const div = document.createElement('div')
     div.innerHTML = `<div id="cart-info" class="flex justify-between items-center bg-[#F0FDF4] p-2 rounded-md space-y-2">
                         <div>
                             <h1 class="font-bold">${allValues[2]}</h1>
-                            <p><span id="product-price">${allValues[5]}</span> x 1</p>
+                            <p>৳<span id="product-price">${allValues[5]}</span> x 1</p>
                         </div>
                         <button onclick="deleteBtn()" class="btn bg-[#F0FDF4] border-none"><i class="fa-solid fa-xmark"></i></button>
 
@@ -179,6 +182,7 @@ const allPlants = () => {
 
 
 const displayAllPlant = (plants) => {
+   
     const allPlantContainer = document.getElementById('all-plant-container')
     allPlantContainer.innerHTML = '';
     plants.forEach(plant => {
@@ -198,9 +202,23 @@ const displayAllPlant = (plants) => {
                        
                     </div>`
         allPlantContainer.appendChild(card);
+        
+        
     })
 }
 allPlants()
 
+const loadSpinner=(status)=>{
+   if(status===true){
+    document.getElementById('spinner').classList.remove('hidden')
+    document.getElementById('all-plant-container').classList.add('hidden')
+    document.getElementById('all-trees').classList.add('hidden')
+   }
+   else{
+    document.getElementById('all-plant-container').classList.remove('hidden')
+    document.getElementById('spinner').classList.add('hidden')
+    document.getElementById('all-trees').classList.remove('hidden')
 
+   }
+}
 
